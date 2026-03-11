@@ -1,0 +1,90 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:background="@drawable/dialog_background">
+        <TextView
+            android:id="@+id/dialogTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Custom Dialog Title"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:fontFamily="sans-serif-medium"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="10dp" />
+
+        <ImageView
+            android:id="@+id/dialogImage"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginVertical="16dp"
+            tools:src="@drawable/lock_meme"
+            />
+
+        <TextView
+            android:id="@+id/dialogMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is a custom dialog message."
+            android:textSize="16sp"
+            android:textColor="#666"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="20dp" />
+
+        <Button
+            android:id="@+id/dialog_button"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_height="wrap_content"
+            android:text="OK, Understandable"
+            android:textColor="@color/white"
+            android:background="@drawable/rounder_card" />
+
+        <Button
+            android:layout_marginTop="8dp"
+            android:id="@+id/extreme_action_button_day"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_height="wrap_content"
+            android:text="@string/extreme_20_minute_lockdown"
+            android:textColor="@color/white"
+            android:backgroundTint="#388E3C"
+            android:background="@drawable/rounder_card" />
+
+        <Button
+            android:visibility="gone"
+            android:layout_marginTop="8dp"
+            android:id="@+id/extreme_action_button_night"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_height="wrap_content"
+            android:text="@string/extreme_1_hour_lockdown"
+            android:textColor="@color/white"
+            android:backgroundTint="#388E3C"
+            android:background="@drawable/rounder_card" />
+
+        <Button
+            android:visibility="gone"
+            android:layout_marginTop="8dp"
+            android:id="@+id/night_time_lock"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_height="wrap_content"
+            android:text="@string/extreme_night_time_4_hour_lock"
+            android:textColor="@color/white"
+            android:backgroundTint="#388E3C"
+            android:background="@drawable/rounder_card" />
+
+    </LinearLayout>
+
+</LinearLayout>
