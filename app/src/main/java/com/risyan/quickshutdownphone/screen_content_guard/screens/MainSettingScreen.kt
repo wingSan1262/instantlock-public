@@ -27,6 +27,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -43,6 +44,7 @@ import com.risyan.quickshutdownphone.base.currentDatetoFormattedString
 import com.risyan.quickshutdownphone.screen_content_guard.navigator.MAIN_SETTING_SCREEN
 import com.risyan.quickshutdownphone.base.requestAccessibilityService
 import com.risyan.quickshutdownphone.base.showSystemQuestionAnnouncement
+import com.risyan.quickshutdownphone.base.openAdminPermissionSetting
 import com.risyan.quickshutdownphone.screen_content_guard.service_utils.AccessibilityTemporaryShutoffChecker
 import com.risyan.quickshutdownphone.base.showToast
 import com.risyan.quickshutdownphone.base.startSingleAllBroadcastStarters
@@ -201,6 +203,39 @@ fun MainScreenContent(
                 )
             }) {
                 Text(stringResource(id = R.string.turn_off))
+            }
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Text(
+            text = "Uninstall",
+            style = DateStyle.copy(
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold
+            ),
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            Text(
+                text = "Open Device Admin to Uninstall",
+                style = TextStyle.Default
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+
+            Button(onClick = {
+                context.showToast("Please deactivate 'Device Administrator' first, then you can uninstall the app from your device settings")
+                context.openAdminPermissionSetting()
+            }) {
+                Text("Open Settings")
             }
         }
     }

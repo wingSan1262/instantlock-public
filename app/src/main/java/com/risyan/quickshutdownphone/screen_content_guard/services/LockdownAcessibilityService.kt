@@ -82,10 +82,15 @@ class LockdownAcessibilityService : AccessibilityService() {
         aiNsfwGrader.runCheckNsfw(bitmap, { isNsfw -> })
         { safe: Int, nsfw: Int, bitmap ->
             scope.launch(Dispatchers.Main) {
+                blankImageChecker.trackIfBlank(
+                    this@LockdownAcessibilityService,
+                    bitmap,
+                )
                 onResult(
                     safe,
                     nsfw,
-                    0
+                    sharedPrefApi.getCurrentBlankImageCounter()
+//                    0
                 )
             }
         }

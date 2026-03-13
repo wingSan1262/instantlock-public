@@ -118,8 +118,8 @@ class GradeFuzzyOccurrenceTest {
     }
 
     @Test
-    fun blankCloseToSafe_shouldNotLock_C2() {
-        assertFalse(
+    fun blankCloseToSafe_shouldLock_C2() {
+        assertTrue(
             grade(
                 safeCount = 7,
                 nsfwCount = 0,
@@ -166,8 +166,8 @@ class GradeFuzzyOccurrenceTest {
     // ─────────────────────────────
 
     @Test
-    fun blankWithMinorNsfw_shouldNotLock_D1() {
-        assertFalse(
+    fun blankWithMinorNsfw_shouldLock_D1() {
+        assertTrue(
             grade(
                 safeCount = 6,
                 nsfwCount = 1,

@@ -7,7 +7,7 @@ fun gradeFuzzyOccurrence(
 ): Boolean {
 
     val total = safeCount + nsfwCount + blankCount
-    if (total < 24) return false
+    if (total < 12) return false
 
     val safe = safeCount / total.toFloat()
     val nsfw = nsfwCount / total.toFloat()
@@ -31,18 +31,29 @@ fun gradeFuzzyOccurrence(
     // 4️⃣ Absolute blank pressure (nonlinear)
     val blankPressure = blank * blank
 
-    // 5️⃣ Final fuzzy score
+    // 5️⃣ Trigger if blank is close to safe (70%+) - incognito indicator
+    val blankCloseToSafe =
+        if (blankCount >= (safeCount * 0.7f) && blankCount >= 4) 0.5f else 0f
+
+    // 6️⃣ Final fuzzy score
     var score =
         nsfwRisk * 0.65f +
-                blankEvasionRisk * 0.5f +
-                blankPressure * 0.35f +
+                blankEvasionRisk * 0.65f +
+                blankPressure * 0.5f +
+                blankCloseToSafe +
                 parityRisk -
-                safe * 0.1f
+                safe * 0.06f
 
     score = score.coerceIn(0f, 1f)
 
     // smoothstep
     score = score * score * (3f - 2f * score)
+
+    // Debug logging
+//    println("gradeFuzzyOccurrence: safe=$safeCount, nsfw=$nsfwCount, blank=$blankCount")
+//    println("  -> blankEvasionRisk=$blankEvasionRisk, blankPressure=$blankPressure, blankCloseToSafe=$blankCloseToSafe")
+//    println("  -> raw score before smoothstep=${(nsfwRisk * 0.65f + blankEvasionRisk * 0.6f + blankPressure * 0.45f + blankCloseToSafe + parityRisk - safe * 0.08f)}")
+//    println("  -> final score=$score, threshold=0.6, result=${score >= 0.6f}")
 
     resetCounters()
 
