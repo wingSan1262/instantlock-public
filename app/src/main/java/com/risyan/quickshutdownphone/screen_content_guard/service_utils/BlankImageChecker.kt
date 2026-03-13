@@ -101,21 +101,21 @@ class NonScreenShotImageGraderImp(
                     return@launch
                 }
 
-                sharedPreferences.setCurrentBlankImageCounter(
-                    sharedPreferences.getCurrentBlankImageCounter() + 1
-                )
+//                sharedPreferences.setCurrentBlankImageCounter(
+//                    sharedPreferences.getCurrentBlankImageCounter() + 1
+//                )
 
-//                context.showIncognitoWarning { isManualDis ->
-//                    if(!isManualDis){
-//                        sharedPreferences.setCurrentBlankImageCounter(0)
-//                        return@showIncognitoWarning
-//                    }
-//                    ownerScope.launch(Dispatchers.Main) {
-//                        sharedPreferences.setCurrentBlankImageCounter(
-//                            sharedPreferences.getCurrentBlankImageCounter() + 1
-//                        )
-//                    }
-//                }
+                context.showIncognitoWarning { isManualDis ->
+                    if(!isManualDis){
+                        sharedPreferences.setCurrentBlankImageCounter(0)
+                        return@showIncognitoWarning
+                    }
+                    ownerScope.launch(Dispatchers.Main) {
+                        sharedPreferences.setCurrentBlankImageCounter(
+                            sharedPreferences.getCurrentBlankImageCounter() + 1
+                        )
+                    }
+                }
             } catch (e: Exception) {
 
             }

@@ -22,6 +22,16 @@ android {
         }
     }
 
+    splits {
+        // Configures multiple APKs based on ABI (CPU architecture)
+        abi {
+            isEnable = true
+            reset()
+            include("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+            isUniversalApk = true  // Also generate a universal APK containing all ABIs
+        }
+    }
+
     signingConfigs {
         create("release") {
             // TODO: Replace with your keystore path and credentials
